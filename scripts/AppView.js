@@ -3,20 +3,25 @@ define([
     'ItemList',
     'ItemView',
     'Item',
-    'underscore'
+    'underscore',
+    'handlebars'
 ], function(
     Backbone,
     ItemList,
     ItemView,
     Item,
-    _
+    _,
+    Handlebars
 ) {
     var AppView = Backbone.View.extend({
 
         el: "#todoapp",
 
+        statsTemplate: Handlebars.compile($('#stats-template').html()),
+
         events: {
-            "keypress #new-todo": "createOnEnter"
+            "keypress #new-todo": "createOnEnter",
+            "click #clear-completed": "clearCompleted"
         },
 
         initialize: function() {
@@ -27,20 +32,32 @@ define([
 
             this.listenTo(this.collection, 'add', this.addOne);
             this.listenTo(this.collection, 'reset', this.addAll);
-            this.listenTo(this.collection, 'change', this.addAll);
+
+            // lookup documentation, may be able to re-render all items
+            this.listenTo(this.collection, 'change:done', this.addAll);
+
             this.listenTo(this.collection, 'all', this.render);
 
             this.incomplete = this.$('incomplete');
+
+            this.footer = this.$('footer');
 
             this.collection.fetch();
         },
 
         render: function() {
+
+            var done = this.collection.done().length;
+            var remaining = this.collection.remaining().length;
+
             if (this.collection.length) {
                 this.incomplete.show();
+                this.footer.show();
+                this.footer.html(this.statsTemplate({'done': done, 'remaining': remaining}));
             }
             else {
                 this.incomplete.hide();
+                this.footer.hide();
             }
         },
 
@@ -68,6 +85,11 @@ define([
 
             this.collection.create({title: this.input.val()});
             this.input.val('');
+        },
+
+        clearCompleted: function() {
+            Handlebars.invoke(this.collection.done(), 'destroy');
+            return false;
         }
     });
 

@@ -20,7 +20,8 @@ define([
             'click .toggle': 'toggleDone',
             'dblclick .view': 'edit',
             'keypress .edit' : 'updateOnEnter',
-            'blur .edit' : 'close'
+            'blur .edit' : 'close',
+            'click a.destroy' : 'clear'
 
         },
 
@@ -59,7 +60,11 @@ define([
         if (e.keyCode == 13) {
             this.close();
         }
-    }
+        },
+
+        clear: function() {
+            this.model.destroy();
+        }
     });
 
     return ItemView;
