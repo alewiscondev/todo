@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Backbone.js Todo App</title>
+    <link rel="stylesheet" href="styles/todo.css"/>
+</head>
+
+<body>
+<div id="todoapp">
+
+    <header>
+        <h1>Todos</h1>
+        <input id="new-todo" type="text" placeholder="What needs to be done?">
+    </header>
+
+    <div id="lists">
+        <section id="incomplete">
+            <header>
+                <h2>INCOMPLETE</h2>
+            </header>
+            <ul id="todo-list-incomplete" class="list"></ul>
+            <footer>
+                <!--TODO-->
+            </footer>
+        </section>
+
+        <section id="complete">
+            <header>
+                <h2>COMPLETE</h2>
+            </header>
+            <ul id="todo-list-complete" class="list"></ul>
+            <footer>
+                <!--TODO-->
+            </footer>
+        </section>
+    </div>
+
+</div>
+
+<script data-main="scripts/main" src="scripts/require.js"></script>
+
+<script type="text/x-handlebars-template" id="item-template">
+    <div>
+        <input class="toggle" type="checkbox" {{#if done}} checked="checked" {{/if}}/>
+        <label>{{title}}</label>
+    </div>
+</script>
+
+</body>
+
+</html>
+

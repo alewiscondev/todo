@@ -1,0 +1,94 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.4em;
+    background: #eeeeee;
+    color: #333333;
+    width: 520px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 0 10px 0;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+    padding: 0 0 10px 0;
+}
+
+input[type="text"] {
+    width: 506px;
+    font-size: 24px;
+    font-family: inherit;
+    line-height: 1.4em;
+    border: 0;
+    outline: none;
+    padding: 6px;
+    border: 1px solid #999999;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    -o-box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 2px 0 inset;
+}
+
+input::-webkit-input-placeholder {
+    font-style: italic;
+}
+
+.list {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.list li {
+    padding: 18px 20px 18px 0;
+    font-size: 24px;
+    border-bottom: 1px solid #cccccc;
+
+}
+
+.list li:last-child {
+    border-bottom: none;
+}
+
+.list li.done label {
+    color: #777777;
+    text-decoration: line-through;
+}
+
+.list label {
+    display: block;
+    overflow: hidden;
+    width: 150px;
+    text-overflow: ellipsis;
+    line-height: 1.5;
+}
+
+.list .toggle {
+    float: left;
+}
+
+#complete {
+    float: right;
+    width: 260px;
+}
+
+#incomplete {
+    float: left;
+    width: 260px;
+}
