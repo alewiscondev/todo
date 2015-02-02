@@ -92,3 +92,16 @@ input::-webkit-input-placeholder {
     float: left;
     width: 260px;
 }
+
+.list li .edit {
+    display: none;
+}
+
+.list li.editing .edit {
+    display: block;
+    width: 240px;
+}
+
+.list li.editing .view {
+    display: none;
+}

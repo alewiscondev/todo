@@ -17,7 +17,11 @@ define([
         template: Handlebars.compile($('#item-template').html()),
 
         events: {
-            'click .toggle': "toggleDone"
+            'click .toggle': 'toggleDone',
+            'dblclick .view': 'edit',
+            'keypress .edit' : 'updateOnEnter',
+            'blur .edit' : 'close'
+
         },
 
         initialize: function() {
@@ -27,12 +31,35 @@ define([
         render: function() {
             this.$el.html(this.template(this.model.toJSON()));
             this.$el.toggleClass('done', this.model.get("done"));
+            this.input = this.$(".edit");
             return this;
         },
 
         toggleDone: function() {
             this.model.toggle();
+        },
+
+        edit: function() {
+            this.$el.addClass('editing');
+            this.input.focus();
+        },
+
+        close: function() {
+            var value = this.input.val();
+            if (!value) {
+                this.clear();
+            }
+            else {
+                this.model.save({title: value});
+                this.$el.removeClass('editing');
+            }
+        },
+
+        updateOnEnter : function(e){
+        if (e.keyCode == 13) {
+            this.close();
         }
+    }
     });
 
     return ItemView;

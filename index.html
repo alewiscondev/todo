@@ -41,10 +41,11 @@
 <script data-main="scripts/main" src="scripts/require.js"></script>
 
 <script type="text/x-handlebars-template" id="item-template">
-    <div>
+    <div class = "view">
         <input class="toggle" type="checkbox" {{#if done}} checked="checked" {{/if}}/>
-        <label>{{title}}</label>
+        <label >{{title}}</label>
     </div>
+    <input class="edit" type="text" value={{title}} />
 </script>
 
 </body>
