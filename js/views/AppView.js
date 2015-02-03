@@ -1,10 +1,10 @@
 define([
     'backbone',
-    'ItemList',
-    'ItemView',
-    'Item',
-    'underscore',
-    'handlebars'
+    '../collections/ItemList',
+    '../views/ItemView',
+    '../models/Item',
+    '../lib/underscore',
+    '../lib/handlebars'
 ], function(
     Backbone,
     ItemList,

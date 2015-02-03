@@ -1,13 +1,13 @@
 define([
-    'jquery',
     'backbone',
-    'Item',
-    'handlebars'
+    '../lib/handlebars',
+    'jquery',
+    '../models/Item'
 ], function(
-    $,
     Backbone,
-    Item,
-    Handlebars
+    Handlebars,
+    $,
+    Item
 ) {
 
     var ItemView = Backbone.View.extend({
