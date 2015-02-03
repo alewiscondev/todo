@@ -7,9 +7,9 @@ require.config({
         'backbone' : '../js/lib/backbone',
         'underscore': '../js/lib/underscore',
         'jquery': '../js/lib/jquery',
-
-
-        'Item' : '../js/models/Item'
+        'Item' : '../js/models/Item',
+        'jasmine-blanket': '../js/lib/jasmine-blanket',
+        'blanket': '../js/lib/blanket'
     },
     shim: {
         'jasmine': {
@@ -22,22 +22,39 @@ require.config({
         'boot': {
             deps: ['jasmine', 'jasmine-html'],
             exports: 'window.jasmineRequire'
+        },
+        'jasmine-blanket' : {
+            deps : [ 'boot', 'blanket' ],
+            exports : 'blanket'
         }
     }
 });
 
-var specs = [
-    'specs/ItemSpec'
-];
+// http://adamish.com/blog/archives/806
+// http://alex-seville.github.io/blanket/test/jasmine/SpecRunner_data_adapter.html
 
-require(['boot'], function () {
+//require(['boot', 'jasmine-blanket'], function () {
+//
+//    // Load the specs
+//    require(specs, function () {
+//
+//        // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
+//        window.onload();
+//    });
+//});
 
-    // Load the specs
-    require(specs, function () {
+require(['boot', 'jasmine-blanket', 'jquery' ], function(jasmine, blanket, $) {
+    debugger;
+    blanket.options('filter', 'js/');
+    blanket.options('antifilter', ['js/models/', 'test/spec/']);
+    blanket.options('branchTracking', true);
+    var specs = [
+        'specs/ItemSpec'
+    ];
 
-        // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
-        window.onload();
+    $(document).ready(function() {
+        require(specs, function () {
+            window.onload();
+        });
     });
 });
-
-

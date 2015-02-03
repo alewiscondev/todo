@@ -1,5 +1,5 @@
 define([
-    'Item'
+    '../../js/models/Item'
 ], function(
     Item
 ) {
@@ -7,11 +7,10 @@ define([
         "The Item contains a single title and status of a todo list",
         function() {
             var item = new Item();
-
+debugger;
             it(
                 "should have the default title \'Name\'",
                 function() {
-debugger;
                     expect(item.get('title')).toBe('Name');
                 }
             );
