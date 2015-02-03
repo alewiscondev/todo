@@ -1,5 +1,5 @@
 define([
-    'model/Item',
+    'Item'
 ], function(
     Item
 ) {
@@ -11,7 +11,8 @@ define([
             it(
                 "should have the default title \'Name\'",
                 function() {
-                    expect(item.title.toBe('Name'));
+debugger;
+                    expect(item.get('title')).toBe('Name');
                 }
             );
         }
