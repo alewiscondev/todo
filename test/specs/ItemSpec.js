@@ -11,7 +11,6 @@ define([
             it(
                 "should have the default title \'Name\'",
                 function() {
-debugger;
                     expect(item.get('title')).toBe('Name');
                 }
             );
