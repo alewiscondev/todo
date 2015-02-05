@@ -1,3 +1,3 @@
-Simple todo list application using Backbone, Require, and Handlebars
+Simple todo list application using assorted Conductor related JS Libraries
 
 Based on http://backbonejs.org/examples/todos/index.html
