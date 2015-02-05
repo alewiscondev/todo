@@ -1,8 +1,8 @@
 define([
     'backbone',
-    '../lib/handlebars',
+    'handlebars',
     'jquery',
-    '../models/Item'
+    'Item'
 ], function(
     Backbone,
     Handlebars,

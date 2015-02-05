@@ -1,8 +1,8 @@
 define([
-    '../lib/underscore',
+    'underscore',
     'backbone',
-    '../models/Item',
-    '../lib/backbone.localStorage'
+    'Item',
+    'backbone-localStorage'
 ], function(
     _,
     Backbone,

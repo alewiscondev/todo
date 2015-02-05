@@ -7,8 +7,6 @@ require.config({
         'backbone' : '../js/lib/backbone',
         'underscore': '../js/lib/underscore',
         'jquery': '../js/lib/jquery',
-
-
         'Item' : '../js/models/Item'
     },
     shim: {
