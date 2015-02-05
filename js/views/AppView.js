@@ -1,16 +1,16 @@
 define([
+    'underscore',
     'backbone',
-    '../collections/ItemList',
-    '../views/ItemView',
-    '../models/Item',
-    '../lib/underscore',
-    '../lib/handlebars'
+    'ItemList',
+    'ItemView',
+    'Item',
+    'handlebars'
 ], function(
+    _,
     Backbone,
     ItemList,
     ItemView,
     Item,
-    _,
     Handlebars
 ) {
     var AppView = Backbone.View.extend({
@@ -21,13 +21,14 @@ define([
 
         events: {
             "keypress #new-todo": "createOnEnter",
-            "click #clear-completed": "clearCompleted"
+            "click #clear-completed": "clearCompleted",
+            "click #toggle-all": "toggleAll"
         },
 
         initialize: function() {
 
             this.input = this.$("#new-todo");
-
+            this.toggleAllBox = this.$("#toggle-all");
             this.collection = new ItemList();
 
             this.listenTo(this.collection, 'add', this.addOne);
@@ -45,6 +46,7 @@ define([
             this.collection.fetch();
         },
 
+        //this.toggleAll.find('input').checked
         render: function() {
 
             var done = this.collection.done().length;
@@ -52,12 +54,22 @@ define([
 
             if (this.collection.length) {
                 this.incomplete.show();
+                this.toggleAllBox.show();
                 this.footer.show();
-                this.footer.html(this.statsTemplate({'done': done, 'remaining': remaining}));
+                this.footer.html(this.statsTemplate({'done': done, 'remaining': remaining, 'plural': this.collection.plural()}));
             }
             else {
                 this.incomplete.hide();
                 this.footer.hide();
+                this.toggleAllBox.hide();
+            }
+
+            if (remaining == 0) {
+                this.footer.addClass('hide-toggle');
+            }
+
+            if (remaining > 0) {
+                this.footer.removeClass('hide-toggle');
             }
         },
 
@@ -88,8 +100,15 @@ define([
         },
 
         clearCompleted: function() {
-            Handlebars.invoke(this.collection.done(), 'destroy');
-            return false;
+            _.invoke(this.collection.done(), 'destroy');
+        },
+
+        toggleAll: function() {
+
+            this.collection.each(function(item) {
+                if (!item.get('done')) {
+                    item.save({'done': true});
+                }})
         }
     });
 

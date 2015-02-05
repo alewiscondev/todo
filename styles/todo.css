@@ -59,6 +59,8 @@ input::-webkit-input-placeholder {
     padding: 18px 20px 18px 0;
     font-size: 24px;
     border-bottom: 1px solid #cccccc;
+    position: relative;
+    height: 30px;
 
 }
 
@@ -104,6 +106,24 @@ input::-webkit-input-placeholder {
 
 .list li.editing .view {
     display: none;
+}
+
+.list .destroy {
+    position: relative;
+    left: 200px;
+    bottom: 30px;
+    display: none;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background: url(destroy.png) no-repeat;
+}
+.list li:hover .destroy {
+    display: block;
+}
+
+.list .destroy:hover {
+    background-position: 0 -20px;
 }
 
 footer {
@@ -159,3 +179,40 @@ footer {
 #todo-count span {
     font-weight: bold;
 }
+
+#toggle-all {
+    float: left;
+    line-height: 20px;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.1);
+    color: #555555;
+    font-size: 11px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding: 0 10px 1px;
+    cursor: pointer;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
+    -ms-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
+    -o-box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 0 0;
+}
+
+#toggle-all:hover {
+    background: rgba(0, 0, 0, 0.15);
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
+    -ms-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
+    -o-box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 -1px 0 0;
+}
+
+.hide-toggle #toggle-all {
+    display: none;
+}
+

@@ -9,7 +9,8 @@ require.config({
         'jquery': '../js/lib/jquery',
         'Item' : '../js/models/Item',
         'jasmine-blanket': '../js/lib/jasmine-blanket',
-        'blanket': '../js/lib/blanket'
+        'blanket': '../js/lib/blanket',
+        'Item' : '../js/models/Item'
     },
     shim: {
         'jasmine': {
@@ -55,6 +56,18 @@ require(['boot', 'jasmine-blanket', 'jquery' ], function(jasmine, blanket, $) {
     $(document).ready(function() {
         require(specs, function () {
             window.onload();
+        });
+        var specs = [
+            'specs/ItemSpec'
+        ];
+
+        require(['boot'], function () {
+
+            // Load the specs
+            require(specs, function () {
+                // Initialize the HTML Reporter and execute the environment (setup by `boot.js`)
+                window.onload();
+            });
         });
     });
 });

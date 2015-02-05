@@ -1,19 +1,19 @@
 require.config({
 
     paths: {
-        'underscore': 'lib/underscore',
         'backbone' : 'lib/backbone',
-        'backbone-localStorage' : 'lib/backbone.localStorage.js',
+        'underscore': 'lib/underscore',
+        'backbone-localStorage' : 'lib/backbone.localStorage',
         'handlebars': 'lib/handlebars',
-        'jquery': 'lib/jquery'
-
-        //'Item' : 'models/Item',
-        //'ItemList' : 'collections/ItemList',
-        //'ItemView' : 'views/ItemView',
+        'jquery': 'lib/jquery',
+        'Item': 'models/Item',
+        'ItemList': 'collections/ItemList',
+        'ItemView': 'views/ItemView',
+        'AppView': 'views/AppView'
     }
 });
 
-require(['views/AppView', 'jquery'], function(AppView, $) {
+require(['AppView', 'jquery'], function(AppView, $) {
     $(function() {
         var App = new AppView();
     });

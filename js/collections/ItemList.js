@@ -1,8 +1,8 @@
 define([
-    '../lib/underscore',
+    'underscore',
     'backbone',
-    '../models/Item',
-    '../lib/backbone.localStorage'
+    'Item',
+    'backbone-localStorage'
 ], function(
     _,
     Backbone,
@@ -21,6 +21,13 @@ define([
 
         remaining: function() {
             return this.where({done: false});
+        },
+
+        plural: function() {
+            if (this.done().length > 1) {
+                return true;
+            }
+            return false;
         }
     });
 
