@@ -13,10 +13,6 @@
         <h1>Todos</h1>
         <input id="new-todo" type="text" placeholder="What needs to be done?">
     </header>
-<div id="toggle-all">
-    <input type="checkbox" id="all-check">
-    <label for="all-check">Mark all as complete</label>
-</div>
     <footer>
         <a id="clear-complete"></a>
         <div id="todo-count"></div>
@@ -52,6 +48,9 @@
 </script>
 
 <script type="text/x-handlebars-template" id="stats-template">
+    <div id="toggle-all">
+        Toggle All To Complete
+    </div>
     {{#if done}}
     <a id="clear-completed">Clear {{done}} completed item{{#if plural}}s{{/if}}</a>
     {{/if}}

@@ -22,14 +22,13 @@ define([
         events: {
             "keypress #new-todo": "createOnEnter",
             "click #clear-completed": "clearCompleted",
-            "click #toggle-all": "toggleAllComplete"
+            "click #toggle-all": "toggleAll"
         },
 
         initialize: function() {
 
             this.input = this.$("#new-todo");
-            this.toggleAll = this.$("#toggle-all");
-
+            this.toggleAllBox = this.$("#toggle-all");
             this.collection = new ItemList();
 
             this.listenTo(this.collection, 'add', this.addOne);
@@ -47,6 +46,7 @@ define([
             this.collection.fetch();
         },
 
+        //this.toggleAll.find('input').checked
         render: function() {
 
             var done = this.collection.done().length;
@@ -54,23 +54,23 @@ define([
 
             if (this.collection.length) {
                 this.incomplete.show();
-                this.toggleAll.show();
+                this.toggleAllBox.show();
                 this.footer.show();
                 this.footer.html(this.statsTemplate({'done': done, 'remaining': remaining, 'plural': this.collection.plural()}));
             }
             else {
                 this.incomplete.hide();
                 this.footer.hide();
-                this.toggleAll.hide();
+                this.toggleAllBox.hide();
             }
-            //if (this.collection.each(function(item){
-            //        if (!item.get('done')) {
-            //            return true;
-            //        }
-            //    })
-            //) {
-            //    this.toggleAll.find('input').checked = false;
-            //}
+
+            if (remaining == 0) {
+                this.footer.addClass('hide-toggle');
+            }
+
+            if (remaining > 0) {
+                this.footer.removeClass('hide-toggle');
+            }
         },
 
         addOne: function(todo) {
@@ -103,10 +103,11 @@ define([
             _.invoke(this.collection.done(), 'destroy');
         },
 
-        toggleAllComplete: function() {
+        toggleAll: function() {
+
             this.collection.each(function(item) {
                 if (!item.get('done')) {
-                    item.save({'done': true})
+                    item.save({'done': true});
                 }})
         }
     });
