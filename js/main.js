@@ -1,8 +1,10 @@
 require.config({
 
+    // basePath: ".",
+
     paths: {
-        'underscore': 'lib/underscore',
         'backbone' : 'lib/backbone',
+        'underscore': 'lib/underscore',
         'backbone-localStorage' : 'lib/backbone.localStorage.js',
         'handlebars': 'lib/handlebars',
         'jquery': 'lib/jquery'
@@ -10,6 +12,19 @@ require.config({
         //'Item' : 'models/Item',
         //'ItemList' : 'collections/ItemList',
         //'ItemView' : 'views/ItemView',
+    },
+
+    shim: {
+        'lib/jquery': {
+            exports: '$'
+        },
+        'lib/underscore': {
+            exports: '_'
+        },
+        'lib/backbone': {
+            deps: ['lib/underscore', 'lib/jquery'],
+            exports: 'Backbone'
+        }
     }
 });
 
