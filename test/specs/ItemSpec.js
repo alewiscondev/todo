@@ -7,7 +7,7 @@ define([
         "The Item contains a single title and status of a todo list",
         function() {
             var item;
-
+debugger;
             beforeEach(function() {
                 item = new Item();
                 spyOn(item, 'save');
