@@ -21,6 +21,13 @@ define([
 
         remaining: function() {
             return this.where({done: false});
+        },
+
+        plural: function() {
+            if (this.done().length > 1) {
+                return true;
+            }
+            return false;
         }
     });
 

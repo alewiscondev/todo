@@ -19,6 +19,7 @@ define([
         events: {
             'click .toggle': 'toggleDone',
             'dblclick .view': 'edit',
+            'click a.destroy': 'clear',
             'keypress .edit' : 'updateOnEnter',
             'blur .edit' : 'close',
             'click a.destroy' : 'clear'
@@ -27,6 +28,7 @@ define([
 
         initialize: function() {
             this.listenTo(this.model, "change", this.render);
+            this.listenTo(this.model, "destroy", this.remove)
         },
 
         render: function() {

@@ -1,16 +1,16 @@
 define([
+    '../lib/underscore',
     'backbone',
     '../collections/ItemList',
     '../views/ItemView',
     '../models/Item',
-    '../lib/underscore',
     '../lib/handlebars'
 ], function(
+    _,
     Backbone,
     ItemList,
     ItemView,
     Item,
-    _,
     Handlebars
 ) {
     var AppView = Backbone.View.extend({
@@ -21,12 +21,14 @@ define([
 
         events: {
             "keypress #new-todo": "createOnEnter",
-            "click #clear-completed": "clearCompleted"
+            "click #clear-completed": "clearCompleted",
+            "click #toggle-all": "toggleAllComplete"
         },
 
         initialize: function() {
 
             this.input = this.$("#new-todo");
+            this.toggleAll = this.$("#toggle-all");
 
             this.collection = new ItemList();
 
@@ -52,13 +54,23 @@ define([
 
             if (this.collection.length) {
                 this.incomplete.show();
+                this.toggleAll.show();
                 this.footer.show();
-                this.footer.html(this.statsTemplate({'done': done, 'remaining': remaining}));
+                this.footer.html(this.statsTemplate({'done': done, 'remaining': remaining, 'plural': this.collection.plural()}));
             }
             else {
                 this.incomplete.hide();
                 this.footer.hide();
+                this.toggleAll.hide();
             }
+            //if (this.collection.each(function(item){
+            //        if (!item.get('done')) {
+            //            return true;
+            //        }
+            //    })
+            //) {
+            //    this.toggleAll.find('input').checked = false;
+            //}
         },
 
         addOne: function(todo) {
@@ -88,8 +100,14 @@ define([
         },
 
         clearCompleted: function() {
-            Handlebars.invoke(this.collection.done(), 'destroy');
-            return false;
+            _.invoke(this.collection.done(), 'destroy');
+        },
+
+        toggleAllComplete: function() {
+            this.collection.each(function(item) {
+                if (!item.get('done')) {
+                    item.save({'done': true})
+                }})
         }
     });
 
