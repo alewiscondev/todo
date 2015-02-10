@@ -2,33 +2,32 @@ define([
     'backbone',
     'handlebars',
     'jquery',
-    'Item'
+    'text!ItemTemplate'
 ], function(
     Backbone,
     Handlebars,
     $,
-    Item
+    ItemTemplate
 ) {
 
     var ItemView = Backbone.View.extend({
 
         tagName: "li",
 
-        template: Handlebars.compile($('#item-template').html()),
+        template: Handlebars.compile(ItemTemplate),
 
         events: {
             'click .toggle': 'toggleDone',
             'dblclick .view': 'edit',
-            'click a.destroy': 'clear',
             'keypress .edit' : 'updateOnEnter',
             'blur .edit' : 'close',
-            'click a.destroy' : 'clear'
-
+            'click a.destroy': 'clear'
         },
 
         initialize: function() {
             this.listenTo(this.model, "change", this.render);
-            this.listenTo(this.model, "destroy", this.remove)
+            this.listenTo(this.model, "destroy", this.remove);
+
         },
 
         render: function() {
@@ -47,6 +46,12 @@ define([
             this.input.focus();
         },
 
+        updateOnEnter : function(e){
+            if (e.keyCode == 13) {
+                this.close();
+            }
+        },
+
         close: function() {
             var value = this.input.val();
             if (!value) {
@@ -56,12 +61,6 @@ define([
                 this.model.save({title: value});
                 this.$el.removeClass('editing');
             }
-        },
-
-        updateOnEnter : function(e){
-        if (e.keyCode == 13) {
-            this.close();
-        }
         },
 
         clear: function() {

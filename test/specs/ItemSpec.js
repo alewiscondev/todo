@@ -34,7 +34,7 @@ define([
                     expect(item.get('done')).toBe(true);
                     expect(item.save).toHaveBeenCalled();
                 }
-            )
+            );
         }
     );
 });
