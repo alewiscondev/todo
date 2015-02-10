@@ -9,7 +9,9 @@ require.config({
         'Item': 'models/Item',
         'ItemList': 'collections/ItemList',
         'ItemView': 'views/ItemView',
-        'AppView': 'views/AppView'
+        'AppView': 'views/AppView',
+        'ItemTemplate': '../templates/ItemTemplate.hbs',
+        'text': 'lib/text'
     }
 });
 

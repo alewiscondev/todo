@@ -38,15 +38,6 @@
 
 <script data-main="js/main" src="js/lib/require.js"></script>
 
-<script type="text/x-handlebars-template" id="item-template">
-    <div class = "view">
-        <input class="toggle" type="checkbox" {{#if done}} checked="checked" {{/if}}/>
-        <label >{{title}}</label>
-        <a class="destroy"></a>
-    </div>
-    <input class="edit" type="text" value={{title}} />
-</script>
-
 <script type="text/x-handlebars-template" id="stats-template">
     <div id="toggle-all">
         Toggle All To Complete

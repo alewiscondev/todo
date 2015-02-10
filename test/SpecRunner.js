@@ -1,13 +1,20 @@
 require.config({
 
+
     paths: {
         'jasmine': '../js/lib/jasmine-2.0.0/jasmine',
         'jasmine-html': '../js/lib/jasmine-2.0.0/jasmine-html',
         'boot': '../js/lib/jasmine-2.0.0/boot',
         'backbone' : '../js/lib/backbone',
+        'backbone-localStorage' : '../js/lib/backbone.localStorage',
         'underscore': '../js/lib/underscore',
         'jquery': '../js/lib/jquery',
-        'Item' : '../js/models/Item'
+        'Item' : '../js/models/Item',
+        'ItemList' : '../js/collections/ItemList',
+        'ItemView' : '../js/views/ItemView',
+        'handlebars': '../js/lib/handlebars',
+        'text': '../js/lib/text',
+        'ItemTemplate' : '../templates/ItemTemplate.hbs'
     },
     shim: {
         'jasmine': {
@@ -24,9 +31,13 @@ require.config({
     }
 });
 
-var specs = [
-    'specs/ItemSpec'
-];
+var specs = [];
+
+specs.push('specs/ItemSpec');
+specs.push('specs/ItemListSpec');
+specs.push('specs/ItemViewSpec');
+
+
 
 require(['boot'], function () {
 
